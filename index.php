@@ -6,13 +6,12 @@ use Discord\OAuth\Discord as DiscordProvider;
 define("COOKIE_NAME","isGranted");
 
 $redirectUri =  'http://'.$_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-//$redirectUri = str_replace('index', 'soundboard',$redirectUri);
 $redirectUri =  'http://www.hutbot.xyz/';
-
+$ini_array = parse_ini_file("config.ini");
 $provider = new DiscordProvider([
-    'clientId'     => '361795986474926081',
-    'clientSecret' => 'Q1EpjiRnqwIDjT8rNtFXckuX9sTD7Wpc',
-    'redirect_uri' => $redirectUri,
+    'clientId'     => $ini_array["clientId"],
+    'clientSecret' => $ini_array["clientSecret"],
+    'redirect_uri' => $ini_array["redirect_uri"],
 ]);
 
 if (! isset($_GET['code'])) {
@@ -25,7 +24,7 @@ if (! isset($_GET['code'])) {
         <title>Custom Login Form</title>
         <link rel="stylesheet" href="assets/css/home.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
     <div class="container">

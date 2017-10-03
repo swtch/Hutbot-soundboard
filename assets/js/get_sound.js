@@ -1,6 +1,6 @@
 function get_sound(){
     $.ajax({
-        url: 'http://35.156.99.232:3000/sb',
+        url: getHost()+"sb",
         hearders : {
             'cache-control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -18,7 +18,7 @@ function get_sound(){
 
 function getVoiceChannels(){
     $.ajax({
-        url: 'http://35.156.99.232:3000/voiceChannel',
+        url: getHost()+"voiceChannel",
         hearders : {
             'cache-control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -45,7 +45,7 @@ function createData(data){
             categories.push(value.category);
         }
 
-        $(".tiles").append("<article class='style1' id=\""+ value.name +"\" data-category=\""+ getCategoryImg(value.category) +"\" > <span class='image'> <img src='images/category/" + getCategoryImg(value.category) + ".jpg' alt='' /> </span> <a href='javascript:submit(\""+ value.name + "\");'> <h2>"+ value.name +"</h2> <div class='content'> <p> " + value.description + "</p> </div> </a> </article>");
+        $(".listSound").append("<tr class='list "+ getCategoryImg(value.category) +"'> <td> "+ value.name +"</td> <td>"+ value.description +"</td> <td>"+  getCategoryImg(value.category) +"</td> <td><a href='javascript:submit(\""+ value.name + "\");'><i class=\"fa fa-play\" aria-hidden=\"true\"></i></a></td> </tr>");
     });
 
     $.each(categories, function (index, category) {

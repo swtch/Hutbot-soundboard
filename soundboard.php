@@ -12,116 +12,95 @@ if ( !isset($_COOKIE["isGranted"]) || $_COOKIE["isGranted"] == NULL){
 	<head>
 		<title>TheHut - SoundBox</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap-table/src/bootstrap-table.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body onload="javascript:get_sound()">
-	<script type="text/javascript" src="assets/js/essai.js"></script>
-	<script type="text/javascript" src="assets/js/get_sound.js"></script>
-		<!-- Wrapper -->
-			<div id="wrapper">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+ 	<body onload="javascript:get_sound()">
+<script type="text/javascript" src="assets/js/essai.js"></script>
+<script type="text/javascript" src="assets/js/get_sound.js"></script>
+<script type="text/javascript" src="assets/js/config.js"></script>
+<!-- Main -->
+<div id="main">
+    <div class="container main_list">
+        <h3>🎉 💪TheHut SoundBoard, by Swtch & Amne !💪 🎉</h3><br>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Les meilleurs sons du meilleur bot au monde sont accessible en un simple cliques ! 🔥</p>
+                <div class="form-group">
+                    <h4>📢 ⚠️Choisi la room ! ⚠️ 📢</h4>
+                    <select class="form-control" id="VoiceChannel" name="VoiceChannel">
+                        <option value="252894202382385162">- Room Discord -</option>
+                    </select>
+                </div>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-							<!-- Logo -->
-								<a href="soundboard.php" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">TheHut - SoundBox</span>
-								</a>
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+                <div class="form-group">
+                    <label>👁️‍🗨️ Filter sur les catégories</label>
+                    <select  class="form-control" name="sort-category" id="sort-category">
+                        <option value="All"> ALL </option>
+                    </select>
+                </div>
+                        <table class="table" >
+                    <thead>
+                    <tr >
+                        <th >SoundName</th>
+                        <th>Description</th>
+                        <th >Category</th>
+                        <th>Play</th>
+                    </tr>
+                    </thead>
+                    <tbody class="listSound">
 
-						</div>
-					</header>
-
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="soundboard.php">Home</a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<h1> TheHut SoundBoard, by Swtch & Amne<br /></h1>
-								<p>Les meilleurs sons du meilleur bot au monde sont accessible en un simple cliques !</p>
-							</header>
-
-							<div class="select-wrapper">
-								<h3>Choix de la Room</h3>
-								<select id="VoiceChannel" name="VoiceChannel"/>
-								<option value="252894202382385162">- Room Discord -</option>
-								</select>
-							</div>
-							<br>
-							<div class="select-wrapper">
-								<h3>Filter sur les catégories</h3>
-								<select name="sort-category" id="sort-category">
-									<option value="All"> ALL </option>
-								</select>
-							</div>
-							<br>
-
-							<!--<h3>Ou rechercher</h3>
-							<input type="text" id="search"/>-->
-							<section class='tiles'>
-
-							</section>
-						</div>
-					</div>
+                    </tbody>
+                </table>
 
 
-			</div>
+            </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Scripts -->
+ <script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-		<script>
-            $('select#sort-category').change(function() {
-                var filter = $(this).val()
-                filterList(filter);
-            });
+<script src="assets/js/main.js"></script>
+<script>
+$('select#sort-category').change(function() {
+    var filter = $(this).val()
+    filterList(filter);
+});
 
-           /* $('#search').keyup(function(){
-                var sSearch = this.value;
-                $('select#sort-category').prop('selectedIndex',0);
-                sSearch = sSearch.split(" ");
-                $.each(sSearch, function(i){
-                    $('section.tiles > article:contains("' + sSearch[i] + '"):not(:first-child)').show();
-                });
-			});*/
+function filterList(value) {
+    var list = $(".list");
+    $(list).fadeOut("fast");
+    if (value == "All") {
+        $(".list").each(function (i) {
+            $(this).delay(200).slideDown("fast");
+        });
+    } else {
+        $("."+value).each(function (i) {
+            $(this).delay(200).slideDown("fast");
+        });
+    }
+}
 
-            function filterList(value) {
-                var list = $(".tiles .style1 ");
-                $(list).fadeOut("fast");
-                if (value == "All") {
-                    $(".tiles").find("article").each(function (i) {
-                        $(this).delay(200).slideDown("fast");
-                    });
-                } else {
-                    $("section.tiles").find("article[data-category*=" + value + "]").each(function (i) {
-                        $(this).delay(200).slideDown("fast");
-                    });
-                }
-            }
+$(window).on('beforeunload', function(e) {
+    document.cookie = 'isGranted' + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+});
+</script>
 
-            $(window).on('beforeunload', function(e) {
-                document.cookie = 'isGranted' + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
-            });
-		</script>
-
-	</body>
+</body>
 </html>

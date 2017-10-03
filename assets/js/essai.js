@@ -1,6 +1,6 @@
 function submit(sound){
     $.ajax({
-        url: 'http://35.156.99.232:3000/play',
+        url: getHost()+"play",
         hearders : {
             'cache-control': 'no-cache',
             'Content-Type': 'application/x-www-form-urlencoded'
