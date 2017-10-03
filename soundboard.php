@@ -1,5 +1,5 @@
 <?php
-   if ( !isset($_COOKIE["isGranted"]) && !$_COOKIE["isGranted"] === true){
+if ( !isset($_COOKIE["isGranted"]) || $_COOKIE["isGranted"] == NULL){
        setcookie("isGranted", NULL, -1);
        header('Location: ./index.php');
    }
@@ -8,11 +8,6 @@
 ?>
 
 <!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html xmlns="http://www.w3.org/1999/html">
 	<head>
 		<title>TheHut - SoundBox</title>
