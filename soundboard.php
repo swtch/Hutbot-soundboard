@@ -18,6 +18,9 @@
 	<script type="text/javascript" src="assets/js/essai.js"></script>
 	<script type="text/javascript" src="assets/js/get_sound.js"></script>
 	<a href="javascript:ajax();">
+		<?php
+		var_dump($_GET['code']);
+		?>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
