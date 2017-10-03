@@ -68,3 +68,26 @@ function createVoiceChannels(data)
         $("#VoiceChannel").append(" <option value=\""+ value.id +"\">"+ value.name +"</option> ");
     });
 }
+
+function isGranted(){
+    alert(arguments[0]);
+    $.ajax({
+        url: "http://35.156.99.232:3000/accessGranted",
+        type: "get", //send it through get method
+        data: {
+            UserID: arguments[0]
+        },
+        hearders : {
+            'cache-control': 'no-cache',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        dataType: "jsonp",
+        success :function (data) {
+            createData(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+

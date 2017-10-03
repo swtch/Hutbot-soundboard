@@ -1,3 +1,12 @@
+<?php
+   if ( !isset($_COOKIE["isGranted"]) && !$_COOKIE["isGranted"] === true){
+       setcookie("isGranted", NULL, -1);
+       header('Location: ./index.php');
+   }
+    session_set_cookie_params(0);
+    session_start();
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Phantom by HTML5 UP
@@ -24,7 +33,7 @@
 					<header id="header">
 						<div class="inner">
 							<!-- Logo -->
-								<a href="index.html" class="logo">
+								<a href="soundboard.php" class="logo">
 									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">TheHut - SoundBox</span>
 								</a>
 							<!-- Nav -->
@@ -41,7 +50,7 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="soundboard.php">Home</a></li>
 						</ul>
 					</nav>
 
@@ -113,6 +122,11 @@
                     });
                 }
             }
+
+            $(window).on('beforeunload', function(e) {
+                document.cookie = 'isGranted' + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+            });
 		</script>
+
 	</body>
 </html>
